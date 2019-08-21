@@ -1,13 +1,9 @@
 #!/bin/sh
-sudo pacman -Syu && y
-sudo pacman -S git && y
-git clone https://aur.archlinux.org/package-query.git
-cd package-query
-makepkg -si
-cd ..
-git clone https://aur.archlinux.org/yaourt.git
-cd yaourt
-makepkg -si
-cd ..
-yaourt -Syu --devel --aur && y
-yaourt -S spotify discord betterdiscord git
+sudo pacman -Syu
+sudo pacman -S --needed base-devel git wget yajl
+cd /tmp
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si --noconfirm
+yay --editmenu --nodiffmenu --save
+yay -S spotify discord betterdiscord parsec-bin
